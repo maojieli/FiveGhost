@@ -15,8 +15,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        initView();
+        setContentView(R.layout.activity_home);
         tb.setLeftImageisible(View.GONE);
         tb.setRightImageisible(View.GONE);
         tb.setLeftTextisible(View.VISIBLE);
@@ -28,8 +27,5 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void initView() {
-        tb = (TitleBarView) findViewById(R.id.tb);
-    }
 }
 

@@ -110,7 +110,7 @@ public class WelcomActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // 按钮一旦被点击，更新 SharedPreferences
-
+//
                 PrefUtils.setBoolean(WelcomActivity.this, PrefUtils.GUIDE_SHOWED, true);
                 // 跳转到主页面
                 startActivity(new Intent(WelcomActivity.this, LoginActivity.class));

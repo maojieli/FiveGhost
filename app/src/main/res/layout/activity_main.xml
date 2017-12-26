@@ -5,15 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.admiralfivetigers.fiveghost.MainActivity">
- <com.admiralfivetigers.fiveghost.widget.pulldowntorefresh.RefreshLayout
-     android:id="@+id/refreshLayout"
-     android:layout_width="match_parent"
-     android:layout_height="match_parent"
-     android:background="#303030">
-  <ListView android:id="@+id/listView"
-      android:background="@android:color/background_light"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"></ListView>
- </com.admiralfivetigers.fiveghost.widget.pulldowntorefresh.RefreshLayout>
+
+    <Button
+        android:id="@+id/bu_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="跳转" />
 
 </RelativeLayout>

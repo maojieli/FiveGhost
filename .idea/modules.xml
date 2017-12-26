@@ -3,11 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FiveGhost.iml" filepath="$PROJECT_DIR$/FiveGhost.iml" />
-      <module fileurl="file://D:\Android\ThreeCoder\FiveGhost\FiveGhost.iml" filepath="D:\Android\ThreeCoder\FiveGhost\FiveGhost.iml" />
+      <module fileurl="file://D:\FiveGhost\FiveGhost.iml" filepath="D:\FiveGhost\FiveGhost.iml" />
       <module fileurl="file://D:\FiveGhost\.idea\FiveGhost.iml" filepath="D:\FiveGhost\.idea\FiveGhost.iml" />
       <module fileurl="file://D:\AndroidBigWorking\FiveGhost\.idea\FiveGhost.iml" filepath="D:\AndroidBigWorking\FiveGhost\.idea\FiveGhost.iml" />
       <module fileurl="file://$PROJECT_DIR$/PushSDK/PushSDK.iml" filepath="$PROJECT_DIR$/PushSDK/PushSDK.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://D:\FiveGhost\app\app.iml" filepath="D:\FiveGhost\app\app.iml" />
       <module fileurl="file://D:\AndroidBigWorking\FiveGhost\app\app.iml" filepath="D:\AndroidBigWorking\FiveGhost\app\app.iml" />
     </modules>
   </component>

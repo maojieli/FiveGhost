@@ -125,7 +125,7 @@ public class RetrofitRequest<T> implements HttpRequest<T> {
     }
 
     @Override
-    public void uploadFile(Uri fileUri) {
+    public void uploadFile(Uri fileUri, final HttpCallback<T> callback) {
         // create upload service client
         // https://github.com/iPaulPro/aFileChooser/blob/master/aFileChooser/src/com/ipaulpro/afilechooser/utils/FileUtils.java
         // use the FileUtils to get the actual file by uri
@@ -151,18 +151,18 @@ public class RetrofitRequest<T> implements HttpRequest<T> {
             @Override
             public void onResponse(Call<ResponseBody> call,
                                    Response<ResponseBody> response) {
-                Log.v("Upload", "success");
+                callback.success((T) new String("成功"));
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.e("Upload error:", t.getMessage());
+                callback.failure(t);
             }
         });
     }
 
     @Override
-    public void upLoadFiles(List<File> mFiles) {
+    public void upLoadFiles(List<File> mFiles, final HttpCallback<T> callback) {
         Map<String, RequestBody> paramsMap = new HashMap<>();
         for (int i = 0; i < mFiles.size(); i++) {
             File file = mFiles.get(i);
@@ -170,12 +170,34 @@ public class RetrofitRequest<T> implements HttpRequest<T> {
             paramsMap.put(file.getName(), fileBody);
         }
         Observable<String> upLoad = RetrofitTools.getInstance().create(RetrofitApi.class).upLoad(paramsMap);
+        upLoad.subscribeOn(Schedulers.io()).unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        callback.success((T) s);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.failure(e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
 
     @Override
-    public void downloadFileWithDynamicUrlSync(String fileUrl) {
+    public void downloadFileWithDynamicUrlSync(String fileUrl, final HttpCallback<T> callback) {
 
         Call<ResponseBody> call = RetrofitTools.getInstance().create(RetrofitApi.class).downloadFileWithDynamicUrlSync(fileUrl);
 
@@ -183,12 +205,11 @@ public class RetrofitRequest<T> implements HttpRequest<T> {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response != null) {
-                    Log.d(TAG, "server contacted and has file");
 
                     boolean writtenToDisk = writeResponseBodyToDisk(response.body());
-
+                    callback.success((T) new String("server contacted and has file"));
                 } else {
-                    Log.d(TAG, "server contact failed");
+                    callback.failure(new Exception("server contact failed"));
                 }
             }
 
@@ -201,6 +222,7 @@ public class RetrofitRequest<T> implements HttpRequest<T> {
 
     /**
      * 文件保存
+     *
      * @param body
      * @return
      */

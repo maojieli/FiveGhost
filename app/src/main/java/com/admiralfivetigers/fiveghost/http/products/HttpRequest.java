@@ -21,9 +21,9 @@ public interface HttpRequest<T> {
 
     void doPost(Context context, String url, final Type type, Map<String, String> mParams, final HttpCallback<T> callback);
 
-    void uploadFile(Uri fileUri);
+    void uploadFile(Uri fileUri,HttpCallback<T> callback);
 
-    void upLoadFiles(List<File> mFiles);
+    void upLoadFiles(List<File> mFiles,HttpCallback<T> callback);
 
-    void downloadFileWithDynamicUrlSync(String fileUrl);
+    void downloadFileWithDynamicUrlSync(String fileUrl,HttpCallback<T> callback);
 }

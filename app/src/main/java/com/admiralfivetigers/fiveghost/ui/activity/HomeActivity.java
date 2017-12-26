@@ -1,4 +1,4 @@
-package com.admiralfivetigers.fiveghost.ui;
+package com.admiralfivetigers.fiveghost.ui.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;

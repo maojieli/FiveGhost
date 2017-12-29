@@ -1,15 +1,19 @@
 package com.admiralfivetigers.fiveghost;
 
 import android.app.Application;
+import android.os.Environment;
 import android.support.multidex.MultiDex;
 import android.util.Log;
 
+import com.alipay.euler.andfix.patch.PatchManager;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;
 import com.umeng.socialize.Config;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
+
+import java.io.IOException;
 
 /**
  * Created by 韩学文 on 2017/12/25.
@@ -28,6 +32,15 @@ public class App extends Application {
     }
 
     //对sdk进行初始化  开启DEBUG模式
+    private static final String TAG = " andrew";
+
+    private static final String APATCH_PATH = "/out.apatch";
+
+    private static final String DIR = "apatch";//补丁文件夹
+    /**
+     * patch manager
+     */
+    private PatchManager mPatchManager;
 
     @Override
     public void onCreate() {
@@ -54,5 +67,32 @@ public class App extends Application {
         //Bug收集
         CrashReport.initCrashReport(getApplicationContext(), "d7bf6471ca", false);
         MultiDex.install(this);
+        /*
+        *   热修复
+        * */
+        // initialize
+        mPatchManager = new PatchManager(this);
+        mPatchManager.init("1.0");
+        Log.d(TAG, "inited.");
+
+        // load patch
+        mPatchManager.loadPatch();
+        try {
+            // .apatch file path
+            String patchFileString = Environment.getExternalStorageDirectory()
+                    .getAbsolutePath() + APATCH_PATH;
+            mPatchManager.addPatch(patchFileString);
+            Log.d(TAG, "apatch:" + patchFileString + " added.");
+//
+//            //复制且加载补丁成功后，删除下载的补丁
+//            File f = new File(this.getFilesDir(), DIR + APATCH_PATH);
+//            if (f.exists()) {
+//                boolean result = new File(patchFileString).delete();
+//                if (!result)
+//                    Log.e(TAG, patchFileString + " delete fail");
+//            }
+        } catch (IOException e) {
+            Log.e(TAG, "", e);
+        }
     }
 }

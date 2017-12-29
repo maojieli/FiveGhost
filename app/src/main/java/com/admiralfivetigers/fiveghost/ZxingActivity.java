@@ -56,7 +56,7 @@ public class ZxingActivity extends AppCompatActivity implements View.OnClickList
          */
         @Override
         public void onResult(SHARE_MEDIA platform) {
-            Toast.makeText(ZxingActivity.this,"成功了",Toast.LENGTH_LONG).show();
+            Toast.makeText(ZxingActivity.this, "成功了", Toast.LENGTH_LONG).show();
         }
 
         /**
@@ -66,7 +66,7 @@ public class ZxingActivity extends AppCompatActivity implements View.OnClickList
          */
         @Override
         public void onError(SHARE_MEDIA platform, Throwable t) {
-            Toast.makeText(ZxingActivity.this,"失败"+t.getMessage(),Toast.LENGTH_LONG).show();
+            Toast.makeText(ZxingActivity.this, "失败" + t.getMessage(), Toast.LENGTH_LONG).show();
         }
 
         /**
@@ -75,17 +75,19 @@ public class ZxingActivity extends AppCompatActivity implements View.OnClickList
          */
         @Override
         public void onCancel(SHARE_MEDIA platform) {
-            Toast.makeText(ZxingActivity.this,"取消了",Toast.LENGTH_LONG).show();
+            Toast.makeText(ZxingActivity.this, "取消了", Toast.LENGTH_LONG).show();
 
         }
     };
+    private Button btn_test01;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zxing);
-        if(Build.VERSION.SDK_INT>=23){
-            String[] mPermissionList = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.CALL_PHONE,Manifest.permission.READ_LOGS,Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.SET_DEBUG_APP,Manifest.permission.SYSTEM_ALERT_WINDOW,Manifest.permission.GET_ACCOUNTS,Manifest.permission.WRITE_APN_SETTINGS};
-            ActivityCompat.requestPermissions(this,mPermissionList,123);
+        if (Build.VERSION.SDK_INT >= 23) {
+            String[] mPermissionList = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CALL_PHONE, Manifest.permission.READ_LOGS, Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.SET_DEBUG_APP, Manifest.permission.SYSTEM_ALERT_WINDOW, Manifest.permission.GET_ACCOUNTS, Manifest.permission.WRITE_APN_SETTINGS};
+            ActivityCompat.requestPermissions(this, mPermissionList, 123);
         }
         initView();
     }
@@ -114,6 +116,8 @@ public class ZxingActivity extends AppCompatActivity implements View.OnClickList
         btn_test9.setOnClickListener(this);
         btn_test0 = (Button) findViewById(R.id.btn_test0);
         btn_test0.setOnClickListener(this);
+        btn_test01 = (Button) findViewById(R.id.btn_test01);
+        btn_test01.setOnClickListener(this);
     }
 
     @Override
@@ -148,7 +152,7 @@ public class ZxingActivity extends AppCompatActivity implements View.OnClickList
             case R.id.btn_test6:
                 new ShareAction(ZxingActivity.this)
                         .withText("hello")
-                        .setDisplayList(SHARE_MEDIA.SINA,SHARE_MEDIA.QQ,SHARE_MEDIA.WEIXIN)
+                        .setDisplayList(SHARE_MEDIA.SINA, SHARE_MEDIA.QQ, SHARE_MEDIA.WEIXIN)
                         .setCallback(shareListener)
                         .open();
                 break;
@@ -165,6 +169,10 @@ public class ZxingActivity extends AppCompatActivity implements View.OnClickList
             //版本迭代
             case R.id.btn_test0:
                 startActivity(new Intent(ZxingActivity.this, VersionActivity.class));
+                break;
+            //热修复
+            case R.id.btn_test01:
+                   startActivity(new Intent(ZxingActivity.this,AndFixActivity.class));
                 break;
         }
     }

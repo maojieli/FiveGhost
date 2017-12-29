@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.admiralfivetigers.fiveghost">
-    <!--        第三方登录分享权限 -->
+
+    <!-- 第三方登录分享权限 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -12,7 +13,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
 
-    <!--    腾讯Bugly -->
+    <!-- 腾讯Bugly -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -20,33 +21,43 @@
     <uses-permission android:name="android.permission.READ_LOGS" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".WelcomActivity"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".MainActivity"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".StartActivity"
+        <activity
+            android:name=".WelcomActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".StartActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ZxingActivity"
-            android:theme="@style/AppTheme"></activity>
-        <activity android:name=".VersionActivity"
-            android:theme="@style/AppTheme"></activity>
-        <activity android:name=".LoginActivity"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".ScanActivity"
-            android:theme="@style/AppTheme"></activity>
-        <activity android:name=".RegisterActivity"
-            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".ZxingActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".VersionActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ScanActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".RegisterActivity"
+            android:theme="@style/AppTheme" />
         <activity
             android:name="com.umeng.socialize.media.WBShareCallBackActivity"
             android:configChanges="keyboardHidden|orientation"
@@ -57,7 +68,7 @@
             android:name="com.sina.weibo.sdk.web.WeiboSdkWebActivity"
             android:configChanges="keyboardHidden|orientation"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"></activity>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="com.sina.weibo.sdk.share.WbShareTransActivity"
             android:launchMode="singleTask"
@@ -92,10 +103,10 @@
             android:value="5a4059a8a40fa34e710000aa" />
         <meta-data
             android:name="UMENG_MESSAGE_SECRET"
-            android:value="3401f8c2d9ea8f20a9f551f5df71054a"></meta-data>
+            android:value="3401f8c2d9ea8f20a9f551f5df71054a" />
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="Channel ID"></meta-data>
+            android:value="Channel ID" />
         <!-- 配置APP ID -->
         <meta-data
             android:name="BUGLY_APPID"
@@ -113,8 +124,7 @@
             android:name="BUGLY_ENABLE_DEBUG"
             android:value="true" />
 
-
-
+        <activity android:name=".AndFixActivity"></activity>
     </application>
 
 </manifest>
